@@ -1,0 +1,36 @@
+.article-container {
+    width: 80%;
+    height: 806px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.article-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.article-date {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.article-text {
+    font-size: 1.2em;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.article-image {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    float: right;
+    margin: 20px;
+
+}
