@@ -1,0 +1,19 @@
+#faq_txt {
+    text-align: center;
+    margin: 0 auto;
+    width: 35%;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #333;
+}
+
+#faq_txt b {
+    font-size: 20px;
+    color: #333;
+    margin-top: 20px;
+    display: block;
+}
+
+#faq_txt p {
+    margin-bottom: 10px;
+}
