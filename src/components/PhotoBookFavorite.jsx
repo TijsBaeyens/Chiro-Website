@@ -1,47 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import '../css/PhotoBook.css';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import "../css/PhotoBook.css"; // Ensure CSS file is imported
 
 const PhotoBookFavorite = () => {
-    const [photos, setPhotos] = useState([]);
-    const [albumName, setAlbumName] = useState('');
-    const [albumID, setAlbumID] = useState('');
+  const [albums, setAlbums] = useState([]);
 
-    useEffect(() => {
-        fetch(`http://localhost:3307/fotos/favorite`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then(data => data.map((photo) => {
-            const uint8Array = new Uint8Array(photo.photo.data);
-            const blob = new Blob([uint8Array]);
-            const url = URL.createObjectURL(blob);
-            return { ...photo, url };
-          }))
-          .then(photosWithUrls => {
-            if (Array.isArray(photosWithUrls) && photosWithUrls.length > 0) {
-              const albumID = photosWithUrls[0].albumID || '';
-              setAlbumID(albumID);
-              const albumName = photosWithUrls[0].album_name || '';
-              setPhotos(photosWithUrls.map((photo) => ({ ...photo, id: photo._id })));
-              setAlbumName(albumName);
-            }
-          })
-          .catch(error => console.error('Fetch error:', error));
-      }, []);
-  
-    return (
-      <NavLink to={`/Fotoboek/${albumID}`} className="card">
-        <h1 className='card-title'>{albumName}</h1>
-        <p className='card-date'>Date: {new Date().toLocaleDateString()}</p>
-        {photos.map((photo, index) => (
-          <img key={index} src={photo.url} alt={photo.text} className="card-preview" />
-        ))}
-      </NavLink>
-    );
-  };
+  useEffect(() => {
+    fetch("http://localhost:3307/fotos/favorite")
+      .then((response) => response.json())
+      .then((data) => {
+        // Group photos by albumID
+        const albumMap = new Map();
+
+        data.forEach((item) => {
+          const photoUrl = `/images/${item.locatieFoto.split("\\").pop()}`;
+          if (!albumMap.has(item.albumID)) {
+            albumMap.set(item.albumID, {
+              albumID: item.albumID,
+              name: item.name,
+              photos: [photoUrl],
+              currentPhotoIndex: 0,
+            });
+          } else {
+            albumMap.get(item.albumID).photos.push(photoUrl);
+          }
+        });
+
+        // Convert map to an array and set state
+        setAlbums(Array.from(albumMap.values()));
+      })
+      .catch((error) => console.error("Fetch error:", error));
+  }, []);
+
+  // Effect to cycle through images per album
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAlbums((prevAlbums) =>
+        prevAlbums.map((album) => ({
+          ...album,
+          currentPhotoIndex: (album.currentPhotoIndex + 1) % album.photos.length,
+        }))
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [albums]);
+
+  return (
+    <div className="album-container">
+      {albums.map((album) => (
+        <NavLink key={album.albumID} to={`/Fotoboek/${album.albumID}`} className="card">
+          <h1 className="card-title">{album.name}</h1>
+          <img
+            src={album.photos[album.currentPhotoIndex]}
+            alt="Album Preview"
+            className="card-preview"
+          />
+        </NavLink>
+      ))}
+    </div>
+  );
+};
 
 export default PhotoBookFavorite;

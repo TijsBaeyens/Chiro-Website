@@ -1,38 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import '../css/Artikels.css';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import "../css/Artikels.css"; // Zorg ervoor dat je een CSS-bestand hebt voor styling
 
-const ArtikelsFavorite = () => {
-    const [articles, setArticles] = useState(null);
+const FavoriteArticles = () => {
+  const [articles, setArticles] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:3307/artikels/favorite')
-            .then(response => response.json())
-            .then(data => data.map((article) => {
-                const uint8Array = new Uint8Array(article.Foto.data);
-                const blob = new Blob([uint8Array]);
-                const url = URL.createObjectURL(blob);
-                return { ...article, Foto: url };
-            }))
-            .then(articlesWithUrls => setArticles(articlesWithUrls));
-    }, []);
+  useEffect(() => {
+    fetch("http://localhost:3307/artikels/favorite") // Pas endpoint aan indien nodig
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedArticles = data.map((item) => ({
+          id: item.idArtikels,
+          title: item.titel,
+          text: item.tekst,
+          date: new Date(item.datum).toLocaleDateString(), // Formatteer datum
+          photoUrl: `/images/${item.locatieFoto.split("\\").pop()}`, // Foto-URL genereren
+        }));
 
-    if (articles === null) {
-        return <div>Loading...</div>;
-    }
+        setArticles(formattedArticles);
+      })
+      .catch((error) => console.error("Fetch error:", error));
+  }, []);
 
-    return (
-        <div className='artikels'>
-    {articles.map((item, index) => (
-        <NavLink to={`/Artikel/${item.ID}`}className="article-card" key={index}>
-            <h2>{item.Titel}</h2>
-            <p>{item.Datum}</p>
-            <img src={item.Foto} alt={item.Titel} />
-            <p>{item.Tekst.length > 200 ? item.Tekst.substring(0, 197) + '...' : item.Tekst}</p>
+  return (
+    <div className="article-container">
+      {articles.map((article) => (
+        <NavLink key={article.id} to={`/Artikel/${article.id}`} className="article-card">
+          <h1 className="article-title">{article.title}</h1>
+          <p className="article-date">{article.date}</p>
+          <img src={article.photoUrl} alt="Article Preview" className="article-preview" />
+          <p className="article-text">{article.text}</p>
         </NavLink>
-    ))}
-</div>
-    );
+      ))}
+    </div>
+  );
 };
 
-export default ArtikelsFavorite;
+export default FavoriteArticles;

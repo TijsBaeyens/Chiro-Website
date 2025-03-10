@@ -66,7 +66,6 @@ export default function WeekPicker() {
   const { weekValue, setWeekValue } = React.useContext(WeekContext);
 
   return (
-    <>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
         value={weekValue}
@@ -83,6 +82,5 @@ export default function WeekPicker() {
         }}
       />
     </LocalizationProvider>
-    </>
   );
 }

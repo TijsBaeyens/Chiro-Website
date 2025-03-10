@@ -7,6 +7,7 @@
     font-size: large;
     justify-self: center;
     background-color: #ffffff;
+    width: 80%;
 }
 
 @media screen and (max-width: 600px) {
@@ -14,3 +15,40 @@
         flex-direction: column;
     }
 }
+.calendar-and-list {
+    display: flex;
+    /* ensures the calendar is on the left, event list on the right */
+    align-items: flex-start;
+    gap: 2rem; /* space between calendar and list */
+    width: 100%; /* take up all available space */
+  }
+  
+  .calendar-container {
+    /* Fix the width so it doesn’t resize when events appear */
+    width: 40%; /* or whatever works well */
+    flex-shrink: 0; /* prevent shrinking */
+  }
+  
+  /* The container for the events */
+  .list-container {
+    display: flex;
+    flex-direction: column; /* stack multiple events vertically */
+    gap: 1rem;              /* spacing between events */
+  }
+  
+  /* Each event “card” */
+  .list-item {
+    display: flex;         /* lay out fields in a horizontal row */
+    flex-wrap: wrap;       /* wrap nicely on smaller screens */
+    gap: 0.5rem;           /* spacing between fields */
+    padding: 1rem;
+    background: #f7f7f7;   /* subtle background to stand out */
+    border-radius: 8px;    
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  
+  .title {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  

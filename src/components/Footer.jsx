@@ -14,9 +14,9 @@ const Footer = () => {
                     <a href="/info#locatie">Locatie</a>
                     <a href="/info#lid-worden">Lid worden</a>
                     <a href="/inschrijven">Inschrijven</a>
-                    <a href="/info#takverdeling">Takken</a>
+                    <a href="/info#groepverdeling">Groepen</a>
                     <a href="/info#kamp">Kamp en weekend</a>
-                    <a href="/info#oudercomite">Oudercomité</a>
+                    <a href="/info#oudercomite">Bouwfonds</a>
                 </div>
                 <div class="column">
                     <h1>Verhuur</h1>
@@ -28,18 +28,19 @@ const Footer = () => {
             <div class="bundle">
                 <div class="column">
                     <h1>Foto's</h1>
-                    <a href="/fotos/kapoenen">Kapoenen</a>
-                    <a href="/fotos/wouters">Wouters</a>
-                    <a href="/fotos/jonggivers">Jonggivers</a>
-                    <a href="/fotos/givers">Givers</a>
-                    <a href="/fotos/jin">Jin</a>
+                    <a href="/fotos/Pinkels">Pinkels</a>
+                    <a href="/fotos/Speelclub">Speelclub</a>
+                    <a href="/fotos/Rakwi">Rakwi</a>
+                    <a href="/fotos/Tito">Tito</a>
+                    <a href="/fotos/Keti">Keti</a>
+                    <a href="/fotos/Aspi">Aspi</a>
                     <a href="/fotos/algemeen">Algemeen</a>
                 </div>
                 <div class="column">
                     <h1>Contact</h1>
                     <a href="/contact">Groepsleiding</a>
                     <a href="/contact">Leiding</a>
-                    <a href="/contact">Oudercomité</a>
+                    <a href="/contact">Bouwfond</a>
                     <a href="/contact">Verhuur</a>
                 </div>
             </div>

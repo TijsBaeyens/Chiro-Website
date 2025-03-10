@@ -2,88 +2,123 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 
+// Initialize the Express app
 const app = express();
-app.use(cors());
 
+// Middleware
+app.use(cors());
+app.use(express.json()); // Enables parsing JSON bodies in requests, if needed
+
+// Create the MySQL connection
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'chirosite'
+  host: 'localhost',
+  user: 'root',
+  password: '',    // Change if you use a password
+  database: 'chirosite'
 });
 
+// Connect to the database (optional, but good for error-checking on startup)
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL database:', err);
+    return;
+  }
+  console.log('Connected to MySQL database.');
+});
+
+// Example Routes
+
+// 1) Fetch favorite photos
+
 app.get('/fotos/favorite', (req, res) => {
-    db.query(`SELECT albums.name AS album_name, fotos.*
-    FROM albums
-    JOIN fotos ON albums.albumID = fotos.albumID
-    WHERE albums.favorite = true`, (err, result) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    })
-})
+  const sqlQuery = `
+    SELECT * FROM album
+    JOIN fotos ON album.albumid = fotos.albumID
+    WHERE album.favorite = true
+  `;
+  db.query(sqlQuery, (err, result) => {
+    if (err) {
+      console.error('Error fetching favorite photos:', err);
+      return res.sendStatus(500);
+    }
+    res.json(result);
+  });
+});
 
+// 2) Fetch all photos
 app.get('/fotos', (req, res) => {
-    db.query(`SELECT albums.name AS album_name, fotos.*
-    FROM albums
-    JOIN fotos ON albums.albumID = fotos.albumID`, (err, result) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    })
-})
+  const sqlQuery = `
+    SELECT album.name AS album_name, fotos.*
+    FROM album
+    JOIN fotos ON album.albumID = fotos.albumID
+  `;
+  db.query(sqlQuery, (err, result) => {
+    if (err) {
+      console.error('Error fetching photos:', err);
+      return res.sendStatus(500);
+    }
+    res.json(result);
+  });
+});
 
+// 3) Fetch photos by album ID
 app.get('/fotos/:id', (req, res) => {
-    const id = req.params.id;
-    db.query(`SELECT albums.name AS album_name, fotos.*
-    FROM albums
-    JOIN fotos ON albums.albumID = fotos.albumID
-    WHERE albums.albumID = ${id}`, (err, result) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    })
-})
+  const { id } = req.params;
+  const sqlQuery = `
+    SELECT album.name AS album_name, fotos.*
+    FROM album
+    JOIN fotos ON album.albumID = fotos.albumID
+    WHERE album.albumID = ?
+  `;
+  db.query(sqlQuery, [id], (err, result) => {
+    if (err) {
+      console.error(`Error fetching photos by album ID ${id}:`, err);
+      return res.sendStatus(500);
+    }
+    res.json(result);
+  });
+});
 
+// 4) Fetch favorite artikels
 app.get('/artikels/favorite', (req, res) => {
-    db.query(`SELECT * FROM artikels WHERE favorite = true`, (err, result) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    })
-})
+  const sqlQuery = `SELECT * FROM artikels 
+  JOIN fotos ON artikels.fotoID = fotos.idfotos 
+  WHERE artikels.favorite = true`;
+  db.query(sqlQuery, (err, result) => {
+    if (err) {
+      console.error('Error fetching favorite artikels:', err);
+      return res.sendStatus(500);
+    }
+    res.json(result);
+  });
+});
 
+// 5) Fetch artikel by ID
 app.get('/artikels/:id', (req, res) => {
-    const id = req.params.id;
-    db.query(`SELECT * FROM artikels WHERE ID = ${id}`, (err, result) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    })
-})
+  const { id } = req.params;
+  const sqlQuery = `SELECT * FROM artikels WHERE ID = ?`;
+  db.query(sqlQuery, [id], (err, result) => {
+    if (err) {
+      console.error(`Error fetching artikel with ID ${id}:`, err);
+      return res.sendStatus(500);
+    }
+    res.json(result);
+  });
+});
 
-app.get('/evenementen/all', (req, res) => {
-    db.query(`SELECT * FROM evenementen`, (err, result) => {
-        if(err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    })
-})
+// 6) Fetch all activiteiten
+app.get('/activiteiten/all', (req, res) => {
+  const sqlQuery = `SELECT * FROM activiteiten`;
+  db.query(sqlQuery, (err, result) => {
+    if (err) {
+      console.error('Error fetching activiteiten:', err);
+      return res.sendStatus(500);
+    }
+    res.json(result);
+  });
+});
 
-
-
-app.listen(3307, () => {
-    console.log("Server is running on port 3307");
-})
+const PORT = 3307;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

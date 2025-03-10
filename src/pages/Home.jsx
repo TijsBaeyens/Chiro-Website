@@ -8,17 +8,22 @@ import PhotoBookFavorite from '../components/PhotoBookFavorite';
 import ArtikelsFavorite from '../components/ArtikelsFavorite';
 
 function Home() {
-    const [weekValue, setWeekValue] = React.useState(dayjs('2024-04-01'));
+    const [weekValue, setWeekValue] = React.useState(dayjs('2025-03-01'));
 
   return (
     <div className="home">
         <div className='row'>
+        <div className="calendar-and-list">
         <WeekContext.Provider value={{ weekValue, setWeekValue }}>
+        <div className="calendar-container">
         <CalendarData key={weekValue}/>
-        <Calendar/>
+        </div>
+          <div className="list-container">
+            <Calendar/>
+          </div>
         </WeekContext.Provider>
         </div>
-
+        </div>
         <div className='row'>
             <PhotoBookFavorite/>
         </div>
