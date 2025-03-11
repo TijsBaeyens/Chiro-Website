@@ -14,6 +14,7 @@ import Fotoboek from "./pages/PhotoBookPage.jsx";
 import InfoPage from "./pages/InfoPage.jsx";
 import InschrijvingenPage from "./pages/InschrijvingenPage.jsx";
 import InschrijvingSpecifiekEventPage from "./pages/InschrijvingSpecifiekEventPage.jsx";
+import LeidingPage from "./pages/LeidingPage.jsx";
  
 
 function App() {
@@ -28,8 +29,8 @@ function App() {
               <Route path="/info" element={<InfoPage />} />
               <Route path="/inschrijvingen" element={<InschrijvingenPage/>} />
               <Route path="/inschrijvingen/:id" element={<InschrijvingSpecifiekEventPage/>} />
+              <Route path="/leiding" element={<LeidingPage/>} />
               <Route path= "*" element={<h1>404 Not Found</h1>} />
-
           </Routes>
           <Footer />
       </Router>

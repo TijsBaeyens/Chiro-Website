@@ -51,8 +51,8 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav__item">
-                <NavLink to="/verhuur" className="nav__link" onClick={toggleMenu}>
-                  Verhuur
+                <NavLink to="/Leiding" className="nav__link" onClick={toggleMenu}>
+                  Leiding
                 </NavLink>
               </li>
               <li className="nav__item">
@@ -92,8 +92,8 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav__item">
-                <NavLink to="/verhuur" className="nav__link">
-                  Verhuur
+                <NavLink to="/Leiding" className="nav__link">
+                  Leiding
                 </NavLink>
               </li>
               <li className="nav__item">

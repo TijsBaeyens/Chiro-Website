@@ -106,7 +106,6 @@ app.get('/artikels/:id', (req, res) => {
   });
 });
 
-// 6) Fetch all activiteiten
 app.get('/activiteiten/all', (req, res) => {
   const sqlQuery = `SELECT * FROM activiteiten`;
   db.query(sqlQuery, (err, result) => {
@@ -117,6 +116,21 @@ app.get('/activiteiten/all', (req, res) => {
     res.json(result);
   });
 });
+
+app.get('/personen', (req, res) => {
+  const sqlQuery = `
+    SELECT name, roles, imageUrl, description
+    FROM personen
+  `;
+  db.query(sqlQuery, (err, result) => {
+    if (err) {
+      console.error('Error fetching persons:', err);
+      return res.sendStatus(500);
+    }
+    res.json(result);
+  });
+});
+
 
 const PORT = 3307;
 app.listen(PORT, () => {

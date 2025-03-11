@@ -1,0 +1,136 @@
+.roles-carousel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: sans-serif;
+  }
+  
+  /* Each role group block */
+  .group-block {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  /* Group title: either "Bouwfonds", "Bestuurslid", etc. */
+  .group-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #7B1E1E; /* Adjust to your theme color */
+  }
+  
+  /* Arrows + row wrapper */
+  .carousel-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* The row that shows up to 4 cards */
+  .people-row {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch; /* so all cards line up in height */
+  }
+  
+  /* Person card styling */
+  .person-card {
+    width: 200px;
+    min-height: 340px; /* ensures consistent height across the row */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+  }
+  
+  /* Image + overlay */
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .person-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+  
+  /* Overlay appears on hover */
+  .person-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .image-container:hover .person-overlay {
+    opacity: 1;
+  }
+  
+  /* Name & role styling */
+  .person-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 0.75rem;
+    color: #A80000;
+  }
+  
+  .person-role {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.25rem;
+  }
+  
+  /* Arrows placed outside the row */
+  .arrow {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    text-align: center;
+    color: #A80000;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    margin: 0 0.5rem;
+  }
+  
+  .arrow:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.1);
+  }
+  
+  /* Ensure they don't overlap the row */
+  .left-arrow {
+    order: -1;
+  }
+  
+  .right-arrow {
+    order: 1;
+  }
+  
+  /* Responsive tweak if needed */
+  @media (max-width: 600px) {
+    .person-card {
+      width: 160px;
+      min-height: 320px;
+    }
+    .group-title {
+      font-size: 1.4rem;
+    }
+  }
+  

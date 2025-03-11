@@ -61,7 +61,6 @@
 /* Responsive: stack or widen on smaller screens */
 @media (max-width: 600px) {
   .card {
-    width: 100%;
     max-width: 340px;  /* or any suitable max-width */
   }
 }

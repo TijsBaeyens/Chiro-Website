@@ -32,22 +32,6 @@ const PhotoBookFavorite = () => {
       .catch((error) => console.error("Fetch error:", error));
   }, []);
 
-  // Effect to cycle through images per album
-  /*
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAlbums((prevAlbums) =>
-        prevAlbums.map((album) => ({
-          ...album,
-          currentPhotoIndex: (album.currentPhotoIndex + 1) % album.photos.length,
-        }))
-      );
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [albums]);
-  */
-
   return (
     <div className="album-container">
       {albums.map((album) => (
