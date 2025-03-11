@@ -33,6 +33,7 @@ const PhotoBookFavorite = () => {
   }, []);
 
   // Effect to cycle through images per album
+  /*
   useEffect(() => {
     const interval = setInterval(() => {
       setAlbums((prevAlbums) =>
@@ -45,6 +46,7 @@ const PhotoBookFavorite = () => {
 
     return () => clearInterval(interval);
   }, [albums]);
+  */
 
   return (
     <div className="album-container">

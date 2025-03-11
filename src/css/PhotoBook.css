@@ -1,54 +1,67 @@
+/* PhotoBook.css */
+
+/* Container for all album cards */
 .album-container {
-    display: flex;
-    flex-wrap: wrap; /* Ensure multiple albums wrap properly */
-    justify-content: center;
-    gap: 15px;
-    padding: 10px;
-  }
-  
+  /* Enable flex layout with wrapping */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the cards */
+  align-items: flex-start;
+  gap: 1.5rem;
+
+  /* Spacing around the container */
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+  box-sizing: border-box; /* Helps prevent unexpected sizing */
+}
+
+/* Each album card */
+.card {
+  /* Flex column for title + image */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Appearance */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 1rem;
+  cursor: pointer;
+  max-width: 300px; /* Limit width to avoid stretching */
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect: subtle lift */
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: translateY(-4px);
+}
+
+/* Album title */
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #A80000; /* Your red theme */
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* Preview image */
+.card-preview {
+  width: 100%;
+  height: 140px;        /* Consistent height for all cards */
+  object-fit: cover;    /* Crop rather than stretch */
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive: stack or widen on smaller screens */
+@media (max-width: 600px) {
   .card {
-    display: flex;
-    flex-direction: column; /* Stack title & image */
-    align-items: center;
-    text-align: center;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    width: 90%; /* Make it responsive */
-    max-width: 300px;
-    background-color: white;
-    text-decoration: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .card-preview {
     width: 100%;
-    max-width: 200px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
+    max-width: 340px;  /* or any suitable max-width */
   }
-  
-  /* Responsive Layout */
-  @media (max-width: 768px) {
-    .album-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .card {
-      width: 95%;
-      max-width: 250px;
-    }
-  
-    .card-preview {
-      max-width: 150px;
-    }
-  }
-  
+}

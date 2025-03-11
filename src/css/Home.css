@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 1em;
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
     justify-self: center;
@@ -24,9 +23,7 @@
   }
   
   .calendar-container {
-    /* Fix the width so it doesn’t resize when events appear */
-    width: 40%; /* or whatever works well */
-    flex-shrink: 0; /* prevent shrinking */
+    flex-shrink: 0;
   }
   
   /* The container for the events */
@@ -52,3 +49,28 @@
     margin-right: 1rem;
   }
   
+  .calendar-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background-color: white;
+  }
+  
+  /* Let each piece expand if needed */
+  .calendar,
+  .calendar-data {
+    flex: 1;
+    min-width: 0; /* helps flex items shrink properly if needed */
+  }
+  
+  @media (max-width: 768px) {
+    .calendar-row {
+      flex-direction: column;
+    }
+    .calendar {
+      order: 1;
+    }
+    .calendar-data {
+      order: 2;
+    }
+  }

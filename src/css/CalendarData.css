@@ -1,54 +1,87 @@
-/* Container for the entire list: multiple events stack vertically */
-.list-container {
-    display: grid;
-  /* Each column is at least 250px wide, then expands to fill */
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    width: 50%;
-    margin-left: 15%;
-    margin-right: 0%;
-    flex-direction: column;
-    gap: 1rem;             
-  }
-  
-  /* The event “card” */
-  .list-item {
+/* CalendarData.css */
+
+/* If you want each "row" to have a single color, 
+   wrap it in .full-width-section. The .list-container 
+   can be white or transparent, depending on your preference. */
+
+   .list-container {
+    margin: 0 auto;
     padding: 1rem;
-    background-color: #f8f8f8;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column; /* so top-row is on top, description below */
-    width: 100%;
+    /* If you want the card backgrounds to pop, keep .list-container transparent or white */
+    background-color: transparent;
+    border-radius: 8px;
+    box-sizing: border-box;
+    max-width: 800px;
   }
   
-  /* The row that holds title, group, date, and hour side by side */
+  /* Event card styling */
+  .list-item {
+    background-color: #fff;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 6px solid #A80000;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+  }
+  
+  .list-item:hover {
+    transform: translateY(-3px);
+  }
+  
   .top-row {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap; /* if it’s narrow, they’ll wrap to the next line */
+    flex-wrap: wrap;
     gap: 1rem;
+    align-items: center;
     margin-bottom: 0.5rem;
   }
   
-  /* Title: bold, a “nicer” red */
   .title {
+    font-size: 1.2rem;
     font-weight: bold;
-    font-size: 22px;
-    color: #D9534F; /* Bootstrap-ish red */
+    flex: 1;
+    color: #A80000;
   }
   
-  /* Group, date, hour: smaller, muted gray */
-  .group, .datum, .uur {
-    font-size: 16px;
+  .group {
+    font-size: 1rem;
+    background-color: #FFCDD2;
+    color: #A80000;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+  }
+  
+  .datum {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #7B1E1E;
+  }
+  
+  .uur {
+    font-size: 0.9rem;
     color: #666;
   }
   
-  /* Description: on its own line, a bit darker text */
   .description {
-    font-size: 16px;
-    color: #333;
     margin-top: 0.5rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #333;
   }
+  
+  /* Additional responsiveness */
+  @media (max-width: 600px) {
+    .list-item {
+      margin: 0.5rem 0;
+    }
+    .top-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .title {
+      font-size: 1.1rem;
+    }
+  }
+
   

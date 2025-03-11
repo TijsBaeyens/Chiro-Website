@@ -1,59 +1,77 @@
+/* Banner.css */
+
 .Header {
     position: relative;
-    width: 70%;
-    margin: auto;
+    width: 100%;
     overflow: hidden;
-    margin-top: 1vh;
-}
-
-.image {
+    background-color: #F4F4ED; /* Off-White background */
+  }
+  
+  .image {
     width: 100%;
     height: auto;
     cursor: pointer;
-}
-
-.modal {
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .image:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Modal overlay (neutral dark) */
+  .modal {
     position: fixed;
-    z-index: 1;
+    z-index: 999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    position: absolute;
-    top: -15%;
-    left: 20%;
-    margin: 15% auto;
-    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
+    align-items: center;
     justify-content: center;
-    width: 60%;
-    height: 60%;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-}
-
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
-}
-
-.close {
-    color: white;
-    font-size: 100px;
+  }
+  
+  /* Modal content: remove red border */
+  .modal-content {
+    position: relative;
+    background-color: #F4F4ED;
+    border: none; /* removed the red side/border */
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 80%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .modal-content img {
+    width: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+  }
+  
+  /* Bigger close button, in grey, red on hover */
+  .close {
+    margin-top: 1rem;
+    font-size: 2rem;
     font-weight: bold;
-    position: absolute;
-    margin-top: 45%;
-
-}
-
-.close:hover,
-.close:focus {
-    color: lightcoral;
-    text-decoration: none;
+    color: grey;
     cursor: pointer;
-}
+    transition: color 0.2s ease;
+  }
+  
+  .close:hover {
+    color: #D32F2F; /* Medium Red on hover */
+  }
+  .logo {
+    height: 50px;
+    width: auto;
+  
+    /* Subtle white drop shadow around the logo */
+    filter: drop-shadow(0 0 3px #fff);
+  }
+  

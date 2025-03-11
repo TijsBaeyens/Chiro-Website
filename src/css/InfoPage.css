@@ -1,19 +1,68 @@
+/* InfoPage.css */
+
+/* If you want a consistent pink background for the whole page,
+   wrap this component in a .full-width-section like your other pages:
+   
+   <div class="full-width-section">
+     <div class="content-wrapper">
+       <InfoPage />
+     </div>
+   </div>
+   
+   And set background-color in your global .full-width-section to #F9EAEA or similar.
+*/
+
+/* Container for the FAQ text */
 #faq_txt {
-    text-align: center;
-    margin: 0 auto;
-    width: 35%;
-    line-height: 1.6;
-    font-size: 16px;
-    color: #333;
-}
-
-#faq_txt b {
-    font-size: 20px;
-    color: #333;
-    margin-top: 20px;
+    max-width: 800px;
+    margin: 2rem auto;          /* Centers it on the page */
+    padding: 1rem;
+    color: #333;                /* General text color */
+    line-height: 1.5;           /* Improves readability */
+  }
+  
+  /* Style the bold lines (questions) as subheadings */
+  #faq_txt b {
     display: block;
-}
-
-#faq_txt p {
-    margin-bottom: 10px;
-}
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #A80000;             /* Scouts red */
+    font-weight: 600;
+    border-bottom: 2px solid #FFCDD2;
+    padding-bottom: 0.25rem;
+  }
+  
+  /* Paragraph spacing */
+  #faq_txt p {
+    margin: 0.75rem 0;
+  }
+  
+  /* Remove bottom margin on the very last paragraph if desired */
+  #faq_txt p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* If you have any links in the text, you can style them here:
+  #faq_txt a {
+    color: #A80000;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+  
+  #faq_txt a:hover {
+    color: #D32F2F;
+  }
+  */
+  
+  /* OPTIONAL: If your logo is hard to see on the red header, 
+     keep the drop-shadow or outline from your previous approach. 
+     Example:
+  */
+  
+  .logo {
+    height: 50px;
+    width: auto;
+    /* A white outline around the logo, so it pops against red */
+    filter: drop-shadow(0 0 3px #fff);
+  }
+  

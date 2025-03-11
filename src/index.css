@@ -1,13 +1,25 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  scroll-behavior: smooth;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+/* Basic reset or minimal global styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #FFFDFC; /* Slightly off-white if you like */
+}
+
+/* A generic "full-width section" class to ensure the entire row
+   has the same background color. */
+.full-width-section {
+  width: 100%;
+  padding: 2rem 0;
+  background-color: #F9EAEA; /* A subtle, consistent light red tone */
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem; /* some side padding */
 }

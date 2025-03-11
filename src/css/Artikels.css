@@ -1,66 +1,69 @@
-.article-container {
+/* Artikels.css */
+
+/* The outer container now just flows in the pink background 
+   from .full-width-section, so no background here. */
+   .article-container {
     display: flex;
-    flex-wrap: wrap; /* Artikelen netjes naast elkaar zetten */
+    flex-wrap: wrap;
+    gap: 1rem;
     justify-content: center;
-    gap: 15px;
-    padding: 10px;
+    /* No extra background color here */
+    /* padding: 1rem 0; if you want extra spacing inside */
   }
   
+  /* Single card for each article */
   .article-card {
     display: flex;
-    flex-direction: column; /* Stapel inhoud verticaal */
-    align-items: center;
-    text-align: center;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 350px; /* Groter dan albums, aangezien een artikel meer tekst heeft */
-    background-color: white;
+    flex-direction: column;
+    width: 300px; /* Increased width to avoid looking too narrow */
     text-decoration: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #A80000;
+    /* Remove the solid white background */
+    background-color: transparent; 
+    border: 1px solid #ddd;  /* If you want a subtle border */
+    border-radius: 8px;
+    padding: 1rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    /* If you want a subtle background, try: background-color: rgba(255,255,255,0.5); */
+  }
+  
+  .article-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
   }
   
   .article-title {
-    font-size: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
     font-weight: bold;
-    margin-bottom: 5px;
+    color: #7B1E1E;
   }
   
   .article-date {
-    font-size: 14px;
-    color: gray;
-    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
   }
   
   .article-preview {
     width: 100%;
-    max-width: 250px;
-    height: auto;
+    height: 180px;
     object-fit: cover;
-    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
   }
   
   .article-text {
-    font-size: 14px;
-    padding: 10px;
-    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #A80000;
   }
   
-  /* Responsief ontwerp */
-  @media (max-width: 768px) {
-    .article-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
     .article-card {
-      width: 95%;
-      max-width: 300px;
-    }
-  
-    .article-preview {
-      max-width: 200px;
+      width: 100%;
+      max-width: 340px;
     }
   }
   
