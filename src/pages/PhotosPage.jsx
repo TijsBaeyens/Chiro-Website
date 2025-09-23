@@ -36,7 +36,7 @@ const PhotoBookAll = () => {
   }, []);
 
   return (
-    <div className="album-container">
+    <div className="album-containerPage">
       {albums.map((album) => (
         <NavLink key={album.albumId} to={`/Fotoboek/${album.albumId}`} className="card">
           <h1 className="card-title">{album.album_name}</h1>

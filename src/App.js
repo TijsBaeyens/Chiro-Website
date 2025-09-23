@@ -15,10 +15,13 @@ import InfoPage from "./pages/InfoPage.jsx";
 import InschrijvingenPage from "./pages/InschrijvingenPage.jsx";
 import InschrijvingSpecifiekEventPage from "./pages/InschrijvingSpecifiekEventPage.jsx";
 import LeidingPage from "./pages/LeidingPage.jsx";
+import LoginPage from './pages/LoginPage.jsx'
+import Dashboard from "./pages/DashboardPage.jsx";
  
 
 function App() {
   return (
+    <div className="app">
       <Router>
           <Navbar />
           <Routes>
@@ -30,10 +33,13 @@ function App() {
               <Route path="/inschrijvingen" element={<InschrijvingenPage/>} />
               <Route path="/inschrijvingen/:id" element={<InschrijvingSpecifiekEventPage/>} />
               <Route path="/leiding" element={<LeidingPage/>} />
+              <Route path="/login" element={<LoginPage/>} />
+              <Route path="/dashboard" element={<Dashboard/>} />
               <Route path= "*" element={<h1>404 Not Found</h1>} />
           </Routes>
           <Footer />
       </Router>
+    </div>
   );
 }
  

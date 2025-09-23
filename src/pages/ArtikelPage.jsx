@@ -7,20 +7,25 @@ const ArtikelPage = () => {
     const [article, setArticle] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:3307/artikels/${id}`)
+        fetch(`http://localhost:3307/Artikels/${id}`)
             .then(response => response.json())
             .then(data => {
-                if (data && data[0] && data[0].Foto) {
-                    const uint8Array = new Uint8Array(data[0].Foto.data);
-                    const blob = new Blob([uint8Array]);
-                    const url = URL.createObjectURL(blob);
-                    setArticle({ ...data[0], Foto: url });
-                } else {
-                    setArticle(data[0]);
+                if (data && data[0]) {
+                    // Format the date to be more readable
+                    const formattedDate = new Date(data[0].datum).toLocaleDateString('nl-BE', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    setArticle({
+                        ...data[0],
+                        datum: formattedDate
+                    });
                 }
             })
             .catch(error => console.log(error));
-    }, []);
+    }, [id]);
 
     if (!article) {
         return <div>Loading...</div>;
@@ -28,10 +33,21 @@ const ArtikelPage = () => {
 
     return (
         <div className="article-container">
-            <h1 className="article-title">{article.Titel}</h1><img className="article-image" src={article.Foto} alt="Article" />
-            <p className="article-date">{article.Datum}</p>
-            <p className="article-text">{article.Tekst}</p>
-            
+            <h1 className="article-title">{article.titel}</h1>
+            {article.fotoID && (
+                <>
+                    <img 
+                        className="article-image" 
+                        src={`/images/${article.locatieFoto.split("\\").pop()}`} 
+                        alt={article.titel} 
+                    />
+                    <div className="article-caption">
+                        {article.bijschrift}
+                    </div>
+                </>
+            )}
+            <p className="article-date">{article.datum}</p>
+            <p className="article-text">{article.tekst}</p>
         </div>
     );
 };

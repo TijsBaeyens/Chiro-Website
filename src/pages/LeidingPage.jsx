@@ -12,7 +12,7 @@ const PeopleRolesCarousel = () => {
     // but the groups themselves will be displayed in this order.
     const roleOrder = [
         "HOOFDLEIDING",
-        "PINKELS",
+        "PINKELS", 
         "SPEELCLUB",
         "RAKWI",
         "TITO",
@@ -24,11 +24,13 @@ const PeopleRolesCarousel = () => {
     // Friendly labels for each role name
     // If the API returns "BOUWFONDS", we can display "Bouwfonds"
     const roleLabels = {
-      BESTUURSLID: "Bestuurslid",
-      HOOFDANIMATOR: "Hoofdanimator",
-      ANIMATOR: "Animator",
-      BOUWFONDS: "Bouwfonds"
-      // Add more if needed...
+      BOUWFONDS: "Bouwfonds",
+      PINKELS: "Pinkels",
+      HOOFDLEIDING: "Hoofdleiding",
+      SPEELCLUB: "Speelclub",
+      RAKWI: "Rakwi",
+      TITO: "Tito",
+      KETI: "Keti",
     };
   
     // We'll always show up to 4 people at once in the carousel
@@ -66,7 +68,7 @@ const PeopleRolesCarousel = () => {
           });
   
           // Build a map of role -> array of persons
-          // so a person with roles ["BESTUURSLID", "BOUWFONDS"] goes into both groups
+          // A person with multiple roles goes into all relevant groups
           const groupsMap = {};
           parsedData.forEach((person) => {
             person.roles.forEach((role) => {

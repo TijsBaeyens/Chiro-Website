@@ -5,6 +5,7 @@
     padding: 2rem 1rem;
     font-family: Arial, sans-serif;
     color: #F4F4ED; /* Off-White text */
+    margin-top: auto; /* Push footer to bottom */
   }
   
   .center {

@@ -1,74 +1,80 @@
-import { React, useState, useEffect} from 'react';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import '../css/PhotoBook.css';
 
-export default function Fotoboek() {
+export default function PhotoBook() {
     const { id } = useParams();
     const [photos, setPhotos] = useState([]);
     const [albumName, setAlbumName] = useState('');
+    const [selectedPhoto, setSelectedPhoto] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:3307/fotos/${id}`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then(data => data.map((photo) => {
-            const uint8Array = new Uint8Array(photo.photo.data);
-            const blob = new Blob([uint8Array]);
-            const url = URL.createObjectURL(blob);
-            return { ...photo, url };
-          }))
-          .then(photosWithUrls => {
-            if (Array.isArray(photosWithUrls) && photosWithUrls.length > 0) {
-              const albumName = photosWithUrls[0].album_name || '';
-              setPhotos(photosWithUrls.map((photo) => ({ ...photo, id: photo._id })));
-              setAlbumName(albumName);
-            }
-          })
-          .catch(error => console.error('Fetch error:', error));
-      }, []);
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data) && data.length > 0) {
+                    setAlbumName(data[0].album_name);
+                    setPhotos(data);
+                }
+            })
+            .catch(error => console.error('Fetch error:', error));
+    }, [id]);
 
-      const [showModal, setShowModal] = useState(false);
-      const [url, setUrl] = useState('');
+    const handlePhotoClick = (photo) => {
+        setSelectedPhoto(photo);
+    };
 
-      const handleClick = (url) => {
-          setUrl(url);
-          setShowModal(true);
-      };
-  
-      const handleCloseModal = () => {
-          setUrl('');
-          setShowModal(false);
-      };
+    const handleCloseModal = () => {
+        setSelectedPhoto(null);
+    };
+
+    const handlePreviousPhoto = (e) => {
+        e.stopPropagation();
+        const currentIndex = photos.findIndex(photo => photo.idfotos === selectedPhoto.idfotos);
+        const previousIndex = (currentIndex - 1 + photos.length) % photos.length;
+        setSelectedPhoto(photos[previousIndex]);
+    };
+
+    const handleNextPhoto = (e) => {
+        e.stopPropagation();
+        const currentIndex = photos.findIndex(photo => photo.idfotos === selectedPhoto.idfotos);
+        const nextIndex = (currentIndex + 1) % photos.length;
+        setSelectedPhoto(photos[nextIndex]);
+    };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h1>{albumName}</h1>
-            <ImageList sx={{ width: 2000, height: 800 }} cols={5} rowHeight={400}>
+        <div className="photo-book-container">
+            <h1 className="album-title">{albumName}</h1>
+            <div className="photo-grid">
                 {photos.map((photo) => (
-                    <ImageListItem key={photo.id} style={{ margin: '10px' }}>
+                    <div 
+                        key={photo.idfotos} 
+                        className="photo-item"
+                        onClick={() => handlePhotoClick(photo)}
+                    >
                         <img
-                            src={photo.url}
-                            alt={photo.title}
-                            style={{ width: '100%', height: '100%', cursor: 'pointer' }}
-                            onClick={() => handleClick(photo.url)}
+                            src={`/images/${photo.locatieFoto.split("\\").pop()}`}
+                            alt={`Photo ${photo.idfotos}`}
+                            className="photo-image"
                         />
-                        <ImageListItemBar title={photo.title} />
-                    </ImageListItem>
+                    </div>
                 ))}
-            </ImageList>
-            {showModal && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={handleCloseModal}>
-                            &times;
-                        </span>
-                        <img src={url} alt="Modal" />
+            </div>
+            {selectedPhoto && (
+                <div className="modal" onClick={handleCloseModal}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <span className="close-button" onClick={handleCloseModal}>&times;</span>
+                        <button className="nav-button prev-button" onClick={handlePreviousPhoto}>
+                            &#10094;
+                        </button>
+                        <img
+                            src={`/images/${selectedPhoto.locatieFoto.split("\\").pop()}`}
+                            alt={`Photo ${selectedPhoto.idfotos}`}
+                            className="modal-image"
+                        />
+                        <button className="nav-button next-button" onClick={handleNextPhoto}>
+                            &#10095;
+                        </button>
                     </div>
                 </div>
             )}

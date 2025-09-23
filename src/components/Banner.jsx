@@ -20,7 +20,7 @@ const Banner = () => {
             {showModal && (
                 <div className="modal">
                     <div className="modal-content">
-                        <span className="close" onClick={handleCloseModal}>
+                        <span className="close-button" onClick={handleCloseModal}>
                             &times;
                         </span>
                         <img src={imageUrl} alt="Modal" />

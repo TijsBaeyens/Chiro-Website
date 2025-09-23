@@ -12,57 +12,173 @@
    And set background-color in your global .full-width-section to #F9EAEA or similar.
 */
 
-/* Container for the FAQ text */
+/* Playful, wavy background for the FAQ section */
 #faq_txt {
-    max-width: 800px;
-    margin: 2rem auto;          /* Centers it on the page */
-    padding: 1rem;
-    color: #333;                /* General text color */
-    line-height: 1.5;           /* Improves readability */
+  max-width: 900px;
+  margin: 3rem auto 2rem auto;
+  padding: 2.5rem 2rem 2rem 2rem;
+  background: linear-gradient(135deg, #fffdfa 80%, #ffeaea 100%);
+  border-radius: 32px 18px 32px 18px / 18px 32px 18px 32px;
+  box-shadow: 0 8px 32px rgba(168, 0, 0, 0.10);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #7B1E1E;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  position: relative;
+  border: 3px dashed #FFD6D6;
+  z-index: 1;
+}
+
+#faq_txt:before {
+  content: '';
+  position: absolute;
+  left: -30px; top: -30px; right: -30px; bottom: -30px;
+  z-index: -1;
+  background: repeating-linear-gradient(120deg, #ffeaea, #ffeaea 30px, #fffdfa 30px, #fffdfa 60px);
+  border-radius: 40px;
+  opacity: 0.5;
+}
+
+/* Playful headings */
+#faq_txt b {
+  display: block;
+  color: #A80000;
+  font-size: 1.25rem;
+  margin-top: 2.2rem;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(90deg, #ffeaea 60%, #fffdfa 100%);
+  border-radius: 12px;
+  padding: 0.3rem 0.7rem;
+  box-shadow: 2px 2px 0 #FFD6D6;
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+#faq_txt b:nth-of-type(even) {
+  background: linear-gradient(90deg, #fffdfa 60%, #ffeaea 100%);
+  color: #D32F2F;
+  transform: rotate(2deg);
+}
+
+#faq_txt p {
+  margin: 0 0 1.2rem 0;
+  color: #333;
+  background: rgba(255, 234, 234, 0.25);
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+  display: inline-block;
+  box-shadow: 1px 1px 0 #FFD6D6;
+}
+
+#faq_txt b:not(:first-child) {
+  border-top: 1px dashed #f3dede;
+  padding-top: 1.7rem;
+}
+
+/* Playful photo layout */
+.info-photos {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin: 2.5rem 0 1.5rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.info-photo-placeholder {
+  width: 220px !important;
+  min-width: 220px !important;
+  max-width: 220px !important;
+  height: 150px !important;
+  min-height: 150px !important;
+  max-height: 150px !important;
+  flex: none !important;
+  background: linear-gradient(135deg, #f9eaea 60%, #ffeaea 100%);
+  border: 3px solid #FFD6D6;
+  border-radius: 22px 12px 22px 12px / 12px 22px 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #A80000;
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(168, 0, 0, 0.10), 2px 2px 0 #FFD6D6;
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  animation: bounceIn 1.1s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.info-photo-placeholder:nth-child(1) {
+  transform: rotate(-7deg) translateY(10px);
+  background: linear-gradient(120deg, #ffeaea 60%, #f9eaea 100%);
+}
+.info-photo-placeholder:nth-child(2) {
+  transform: rotate(5deg) translateY(-10px);
+  background: linear-gradient(120deg, #f9eaea 60%, #ffeaea 100%);
+  z-index: 2;
+}
+.info-photo-placeholder:nth-child(3) {
+  transform: rotate(-3deg) translateY(8px);
+  background: linear-gradient(120deg, #fffdfa 60%, #ffeaea 100%);
+}
+.info-photo-placeholder:hover {
+  box-shadow: 0 12px 32px rgba(168, 0, 0, 0.18), 4px 4px 0 #FFD6D6;
+  transform: scale(1.07) rotate(-2deg);
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.7) translateY(60px); }
+  60% { opacity: 1; transform: scale(1.1) translateY(-10px); }
+  80% { transform: scale(0.95) translateY(4px); }
+  100% { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .info-photos {
+    gap: 1.2rem;
   }
-  
-  /* Style the bold lines (questions) as subheadings */
-  #faq_txt b {
-    display: block;
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    color: #A80000;             /* Scouts red */
-    font-weight: 600;
-    border-bottom: 2px solid #FFCDD2;
-    padding-bottom: 0.25rem;
+  .info-photo-placeholder {
+    width: 140px !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
+    height: 90px !important;
+    min-height: 90px !important;
+    max-height: 90px !important;
+    font-size: 0.95rem;
   }
-  
-  /* Paragraph spacing */
-  #faq_txt p {
-    margin: 0.75rem 0;
+}
+
+@media (max-width: 600px) {
+  .info-photos {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
   }
-  
-  /* Remove bottom margin on the very last paragraph if desired */
-  #faq_txt p:last-child {
-    margin-bottom: 0;
+  .info-photo-placeholder {
+    width: 90vw !important;
+    max-width: 320px !important;
+    min-width: 90vw !important;
+    height: 80px !important;
+    min-height: 80px !important;
+    max-height: 80px !important;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    transform: none !important;
   }
-  
-  /* If you have any links in the text, you can style them here:
-  #faq_txt a {
-    color: #A80000;
-    text-decoration: underline;
-    transition: color 0.2s ease;
-  }
-  
-  #faq_txt a:hover {
-    color: #D32F2F;
-  }
-  */
-  
-  /* OPTIONAL: If your logo is hard to see on the red header, 
-     keep the drop-shadow or outline from your previous approach. 
-     Example:
-  */
-  
-  .logo {
-    height: 50px;
-    width: auto;
-    /* A white outline around the logo, so it pops against red */
-    filter: drop-shadow(0 0 3px #fff);
-  }
+}
+
+#faq_txt {
+  opacity: 0;
+  animation: fadeInFaq 0.8s ease 0.1s forwards;
+}
+@keyframes fadeInFaq {
+  to { opacity: 1; }
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 0 3px #fff);
+}
   

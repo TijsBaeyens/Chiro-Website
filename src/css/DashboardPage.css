@@ -1,0 +1,269 @@
+/* Dashboard container styling */
+.dashboard-container {
+  max-width: 1100px;
+  margin: 3rem auto 2rem auto;
+  background: linear-gradient(135deg, #fffdfa 80%, #ffeaea 100%);
+  border-radius: 32px 18px 32px 18px / 18px 32px 18px 32px;
+  box-shadow: 0 8px 32px rgba(168, 0, 0, 0.10);
+  border: 3px dashed #FFD6D6;
+  padding: 2.5rem 2rem 2rem 2rem;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.dashboard-tabs button {
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Segoe UI', Arial, sans-serif;
+  background: #fffdfa;
+  border: 2px solid #FFD6D6;
+  border-radius: 18px;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.1rem;
+  color: #A80000;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 1px 1px 0 #FFD6D6;
+}
+
+.dashboard-tabs button.active, .dashboard-tabs button:hover {
+  background: #ffeaea;
+  color: #7B1E1E;
+  box-shadow: 2px 2px 0 #FFD6D6;
+}
+
+.dashboard-content {
+  min-height: 300px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(168, 0, 0, 0.04);
+  padding: 2rem 1.5rem;
+}
+
+@media (max-width: 700px) {
+  .dashboard-container {
+    padding: 1.2rem 0.5rem;
+  }
+  .dashboard-tabs {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .dashboard-content {
+    padding: 1rem 0.2rem;
+  }
+}
+
+.dashboard-artikels-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.dashboard-artikel-card {
+  background: #fffdfa;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(168, 0, 0, 0.08);
+  border: 2px dashed #FFD6D6;
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  min-width: 260px;
+  max-width: 320px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.dashboard-artikel-card:hover {
+  box-shadow: 0 8px 32px rgba(168, 0, 0, 0.13);
+  transform: translateY(-4px) scale(1.02);
+}
+.dashboard-artikel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.dashboard-artikel-title {
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #A80000;
+  background: linear-gradient(90deg, #ffeaea 60%, #fffdfa 100%);
+  border-radius: 8px;
+  padding: 0.2rem 0.6rem;
+  box-shadow: 1px 1px 0 #FFD6D6;
+  display: inline-block;
+}
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #FFD600;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: transform 0.15s;
+}
+.star-btn:hover {
+  transform: scale(1.2) rotate(-10deg);
+}
+.dashboard-artikel-date {
+  font-size: 0.95rem;
+  color: #7B1E1E;
+  margin-bottom: 0.5rem;
+}
+.dashboard-artikel-img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.7rem;
+  background: #ffeaea;
+}
+.dashboard-artikel-text {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  flex: 1 1 auto;
+}
+.dashboard-artikel-actions {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: flex-end;
+}
+.edit-btn, .delete-btn {
+  background: #fffdfa;
+  border: 1.5px solid #FFD6D6;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  color: #A80000;
+  transition: background 0.15s, color 0.15s;
+}
+.edit-btn:hover {
+  background: #ffeaea;
+  color: #7B1E1E;
+}
+.delete-btn:hover {
+  background: #FFD6D6;
+  color: #D32F2F;
+}
+.dashboard-artikel-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  color: #A80000;
+  background: #ffeaea;
+  border: 2.5px dashed #FFD6D6;
+  cursor: pointer;
+  min-width: 180px;
+  min-height: 220px;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.dashboard-artikel-add:hover {
+  background: #fffdfa;
+  box-shadow: 0 4px 16px rgba(168, 0, 0, 0.13);
+}
+.add-plus {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #A80000;
+}
+
+/* Modal styling */
+.dashboard-modal-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(168,0,0,0.13);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-modal {
+  background: #fffdfa;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(168, 0, 0, 0.13);
+  border: 2.5px dashed #FFD6D6;
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-width: 320px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: stretch;
+}
+.dashboard-modal h2 {
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Segoe UI', Arial, sans-serif;
+  color: #A80000;
+  margin-bottom: 1rem;
+}
+.dashboard-modal label {
+  font-weight: 600;
+  color: #A80000;
+  margin-bottom: 0.2rem;
+  margin-top: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.dashboard-modal input, .dashboard-modal textarea {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #FFD6D6;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  transition: border 0.2s;
+  background: #fff;
+}
+.dashboard-modal textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.dashboard-modal input:focus, .dashboard-modal textarea:focus {
+  border: 2px solid #A80000;
+  outline: none;
+}
+.dashboard-modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+.dashboard-modal-actions button {
+  background: #A80000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 2px 2px 0 #FFD6D6;
+}
+.dashboard-modal-actions button:hover {
+  background: #7B1E1E;
+  transform: scale(1.04);
+}
+@media (max-width: 700px) {
+  .dashboard-artikels-grid {
+    gap: 1rem;
+  }
+  .dashboard-artikel-card {
+    min-width: 90vw;
+    max-width: 98vw;
+    padding: 1rem 0.5rem;
+  }
+  .dashboard-modal {
+    min-width: 90vw;
+    padding: 1.2rem 0.5rem;
+  }
+} 

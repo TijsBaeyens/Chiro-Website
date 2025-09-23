@@ -1,0 +1,93 @@
+/* InschrijvingSpecifiekEventPage.css */
+
+.event-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 12px;
+  min-height: 56vh;
+}
+
+.event-title {
+  font-size: 2rem;
+  color: #A80000;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.event-date {
+  color: #7B1E1E;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.event-description {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.event-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(168, 0, 0, 0.08);
+}
+
+.event-form label {
+  display: block;
+  font-weight: 600;
+  color: #A80000;
+  margin-bottom: 0.5rem;
+}
+
+.event-form input[type="text"] {
+  width: 95%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  transition: border 0.2s;
+}
+
+.event-form input[type="text"]:focus {
+  border: 1.5px solid #A80000;
+  outline: none;
+}
+
+.event-form button[type="submit"] {
+  background: #A80000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.event-form button[type="submit"]:hover {
+  background: #7B1E1E;
+}
+
+.event-form .success-message {
+  color: #388e3c;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.event-form .error-message {
+  color: #D32F2F;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  text-align: center;
+} 

@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding: 2rem 1rem;
     font-family: sans-serif;
+    min-height: 56vh;
   }
   
   /* Each role group block */
